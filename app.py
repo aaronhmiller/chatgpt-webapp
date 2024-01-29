@@ -22,6 +22,10 @@ def update():
 def create():
     return render_template('add.html')
 
+@app.route('/delete')
+def delete():
+    return render_template('delete.html')
+
 @app.route('/users', methods=['GET'])
 def get_data():
     # Connect to PostgreSQL database
@@ -84,6 +88,24 @@ def create_data():
 
     # Return created data
     return jsonify({'id': new_data_id, 'name': new_name, 'email': new_email})
+
+# Define the route for deleting data
+@app.route('/users/<int:data_id>', methods=['DELETE'])
+def delete_data(data_id):
+    # Connect to PostgreSQL database
+    connection = psycopg2.connect(**db_params)
+    cursor = connection.cursor()
+
+    # Delete data from the database
+    cursor.execute('DELETE FROM users WHERE id = %s', (data_id,))
+    connection.commit()
+
+    # Close database connection
+    cursor.close()
+    connection.close()
+
+    # Return a response
+    return jsonify({'message': f'Data with ID {data_id} deleted successfully'})
 
 if __name__ == '__main__':
     app.run(debug=True)
