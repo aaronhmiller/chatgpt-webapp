@@ -9,7 +9,7 @@ db_params = {
     'dbname': 'api',
     'user': 'ox',
     'password': 'ox',
-    'host': 'localhost',
+    'host': 'postgres',
     'port': '5432'
 }
 
@@ -97,7 +97,8 @@ def delete_data(data_id):
     cursor = connection.cursor()
 
     # Delete data from the database
-    cursor.execute('DELETE FROM users WHERE id = %s', (data_id))
+    # NOTE: trailing comma makes it iterable
+    cursor.execute('DELETE FROM users WHERE id = %s', (data_id,))
     connection.commit()
 
     # Close database connection
