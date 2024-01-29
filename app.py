@@ -5,11 +5,13 @@ import psycopg2
 app = Flask(__name__)
 
 # Replace the following with your PostgreSQL database details
+# NOTE: use localhost if running outside docker compose
 db_params = {
     'dbname': 'api',
     'user': 'ox',
     'password': 'ox',
-    'host': 'postgres',
+    'host': 'postgres,
+#    'host': 'localhost',
     'port': '5432'
 }
 
@@ -109,4 +111,4 @@ def delete_data(data_id):
     return jsonify({'message': f'Data with ID {data_id} deleted successfully'})
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=8000)
+    app.run(debug=True, host='0.0.0.0', port=8080)
