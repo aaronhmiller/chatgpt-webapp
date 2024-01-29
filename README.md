@@ -15,9 +15,9 @@ It told me to install Flask (Python framework) and gave me app.py & index.html &
 
 1. Fire up the crud-app docker compose stack, from its directory, `docker compose up -d`
 2. from this project's directory, run `python3 app.py`
-3. in your browser, open the page: [http://127.0.0.1:5000/](http:127.0.0.1:5000)
-4. you should see the inital data, and be able to update any of the records
+3. in your browser, open the page: [http://localhost:8000/update](http:localhost:8000/update)
+4. you should see the inital data, and be able to create, update or delete any of the records
 
 ## To-do
 
-Add ability to CREATE new records. This will need POST implemented in the web page (there's a REST call ready to go already)
+~~Add ability to CREATE new records. This will need POST implemented in the web page (there's a REST call ready to go already)~~
