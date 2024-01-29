@@ -97,7 +97,7 @@ def delete_data(data_id):
     cursor = connection.cursor()
 
     # Delete data from the database
-    cursor.execute('DELETE FROM users WHERE id = %s', (data_id,))
+    cursor.execute('DELETE FROM users WHERE id = %s', (data_id))
     connection.commit()
 
     # Close database connection
