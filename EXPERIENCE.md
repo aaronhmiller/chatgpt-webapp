@@ -18,3 +18,19 @@ now show me how to create a web form that allows me to edit the data using the R
 6. Had to google how to fix Jinja2 error on stylesheet not loading
 
 7. Had to figure out how to add `+ id` to my URL for PUT for one of the suggested functions
+
+## Big Challenge
+The most challenging hurdle so far has been getting `delete` to work. The code ChatGPT provided
+kept erroring and the buttons were titled `delete undefined`. I kept explaining to ChatGPT that
+I was getting errors and it suggested some debug code which lead me to indicating what my data looked
+like and then it suggested a different way to make the calls work. Specifically:
+```
+deleteButton.textContent = `Delete ${data.id}`;
+```
+didn't work.
+but
+```
+            const userId = data[0]; // Access the ID from the first element of the inner array
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = `Delete ${userId}`;
+```
