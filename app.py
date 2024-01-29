@@ -10,7 +10,7 @@ db_params = {
     'dbname': 'api',
     'user': 'ox',
     'password': 'ox',
-    'host': 'postgres,
+    'host': 'postgres',
 #    'host': 'localhost',
     'port': '5432'
 }
