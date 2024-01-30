@@ -10,6 +10,7 @@
 services:
   webapp:
     image: aaronhmiller/webapp
+    init: true
     container_name: webapp
     ports:
       - 8000:8000
