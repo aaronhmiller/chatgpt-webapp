@@ -15,6 +15,11 @@ db_params = {
     'port': '5432'
 }
 
+# Define a default route
+@app.route('/')
+def index():
+    return render_template('update.html')
+
 # Define your REST API routes
 @app.route('/update')
 def update():
