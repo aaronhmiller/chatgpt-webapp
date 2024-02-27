@@ -1,5 +1,6 @@
-ARG PYTHON_VERSION=3.11.7
-FROM python:${PYTHON_VERSION}-slim-bookworm as base
+ARG PYTHON_VERSION=3.12.2
+#FROM python:${PYTHON_VERSION}-slim as base
+FROM python:3.12.2-slim as base
 
 # Prevents Python from writing pyc files.
 ENV PYTHONDONTWRITEBYTECODE=1
