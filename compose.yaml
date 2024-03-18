@@ -1,10 +1,10 @@
 services:
   webapp:
-    image: aaronhmiller/webapp
+    image: aaronhmiller/webapp:cloudflare
     init: true
     container_name: webapp
     ports:
-      - 8000:8000
+      - 443:8000
     volumes:
       - ./certs/:/etc/certs/
   postgres:
