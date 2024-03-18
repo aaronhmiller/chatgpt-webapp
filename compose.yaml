@@ -5,6 +5,8 @@ services:
     container_name: webapp
     ports:
       - 8000:8000
+    volumes:
+      - ./certs/:/etc/certs/
   postgres:
     image: postgres
     restart: always

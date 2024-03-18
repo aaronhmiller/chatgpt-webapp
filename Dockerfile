@@ -1,6 +1,5 @@
 ARG PYTHON_VERSION=3.12.2
-#FROM python:${PYTHON_VERSION}-slim as base
-FROM python:3.12.2-slim as base
+FROM python:${PYTHON_VERSION}-slim as base
 
 # Prevents Python from writing pyc files.
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -43,4 +42,4 @@ EXPOSE 8000
 env FLASK_APP=app.py
 
 # Run the application.
-CMD ["flask","run","--host","0.0.0.0","--port","8000"]
+CMD ["flask","run","--host","0.0.0.0","--port","8000","--cert=/etc/certs/cloudflare-cert.pem","--key=/etc/certs/cloudflare-key.pem"]
