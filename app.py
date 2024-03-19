@@ -1,6 +1,7 @@
 # Import the necessary modules
 from flask import Flask, render_template, jsonify, request
 import psycopg2
+import requests
 
 app = Flask(__name__)
 
@@ -35,42 +36,41 @@ def delete():
 
 @app.route('/users', methods=['GET'])
 def get_data():
-    # Connect to PostgreSQL database
-    connection = psycopg2.connect(**db_params)
-    cursor = connection.cursor()
+    # URL of the RESTful API endpoint
+    api_url = 'https://api.demojoyto.win/users'
 
-    cursor.execute('SELECT * FROM users ORDER BY id')
-    data = cursor.fetchall()
+    # Make a GET request to the RESTful API
+    response = requests.get(api_url)
 
-    # Close database connection
-    cursor.close()
-    connection.close()
-
-    # Convert data to JSON and return
-    return jsonify(data)
+    # Check if the request was successful
+    if response.status_code == 200:
+      # Convert the response to JSON
+      data = response.json()
+      return jsonify(data)
+    else:
+      # Handle errors or unsuccessful responses
+      return jsonify({'error': 'Failed to fetch data from API'}), response.status_code
 
 # Define the route for updating data
 @app.route('/users/<int:data_id>', methods=['PUT'])
 def update_data(data_id):
-    # Connect to PostgreSQL database
-    connection = psycopg2.connect(**db_params)
-    cursor = connection.cursor()
+    # URL of the RESTful API endpoint
+    api_url = f'https://api.demojoyto.win/users/{data_id}'
 
     # Get data from the request
     data = request.json
-    new_name = data.get('name')
-    new_email = data.get('email')
 
-    # Update data in the database
-    cursor.execute('UPDATE users SET name = %s, email = %s WHERE id = %s', (new_name, new_email, data_id))
-    connection.commit()
+    # Make a PUT request to the RESTful API
+    response = requests.put(api_url, json=data)
 
-    # Close database connection
-    cursor.close()
-    connection.close()
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Return the updated user data
+        return response.json()
+    else:
+        # Handle errors or unsuccessful responses
+        return jsonify({'error': 'Failed to update user data'}), response.status_code
 
-    # Return updated data
-    return jsonify({'message': 'Data updated successfully'})
 
 # Define the route for creating data
 @app.route('/users', methods=['POST'])
