@@ -12,10 +12,10 @@
 
     <h2>Add Data</h2>
     <form id="insert-form">
-        <label for="newName">Name:</label>
-        <input type="text" id="newName" name="newName">
-        <label for="newEmail">Email:</label>
-        <input type="text" id="newEmail" name="newEmail">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email">
         <input type="submit" value="Submit">
     </form>
 
@@ -45,10 +45,11 @@
         document.getElementById('insert-form').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            const formData = new FormData(event.target);
+            const form = event.target;
+            const formData = new FormData(form);
             const formDataObject = {};
-            formData.forEach((value, key) => {
-                formDataObject[key] = value;
+            formData.forEach((key, value) => {
+                formDataObject[value] = key;
             });
 
             // Send POST request to insert new data
@@ -59,10 +60,12 @@
                 },
                 body: JSON.stringify(formDataObject)
             })
-            .then(response => response.json())
+            .then(response => response.text())
             .then(data => {
                 console.log('Data inserted:', data);
                 fetchData(); //refresh after adding
+                form.reset(); //reset form fields to default values
+                document.getElementById('name').focus(); //move focus to the first input field of the form
             })
             .catch(error => console.error('Error inserting data:', error));
         });

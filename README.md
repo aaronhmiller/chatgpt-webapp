@@ -18,6 +18,13 @@ It told me to install Flask (Python framework) and gave me app.py & index.html &
 3. in your browser, open the page: [http://localhost:8000](http:localhost:8000)
 4. you should see the inital data, and be able to create, update or delete any of the records
 
+## Misconceptions
+I thought I had it doing all updates via the REST API. However, I was just making calls to the DB, using the same logic the API used!
+
+Now refactoring to use api.demojoyto.win.
+
+Notes: had to add both AWS IPs to the Cloudflare WAF to prevent 403s.
+
 ## To-do
 
 ~~Add ability to CREATE new records. This will need POST implemented in the web page (there's a REST call ready to go already)~~
