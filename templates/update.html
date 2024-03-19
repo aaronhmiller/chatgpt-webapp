@@ -67,7 +67,7 @@
                     email: email,
                 }),
             })
-            .then(response => response.json())
+            .then(response => response.text())
             .then(data => {
                 console.log('Data edited successfully:', data);
                 fetchData(); // Refresh data after editing
