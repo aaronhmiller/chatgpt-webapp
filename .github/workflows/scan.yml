@@ -16,7 +16,7 @@ jobs:
         name: Run OX Security Scan to check for vulnerabilities
         with:
           ox_api_key: ${{ secrets.OX_API_KEY }}
-          ox_timeout: 5
+          ox_timeout: 7
           ox_fail_on_timeout: true
           ox_scan_full_branch: true
           ox_override_blocking: true
