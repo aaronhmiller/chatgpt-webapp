@@ -1,61 +1,9 @@
 services:
   webapp:
-    image: aaronhmiller/webapp:cloudflare
+    image: aaronhmiller/webapp
     init: true
     container_name: webapp
     ports:
       - 443:8000
     volumes:
       - ./certs/:/etc/certs/
-  postgres:
-    image: postgres
-    restart: always
-    container_name: postgres
-    hostname: postgres
-    ports:
-      - 5432:5432
-    environment:
-      - POSTGRES_USER=ox
-      - POSTGRES_DB=api
-      - POSTGRES_PASSWORD=ox
-    volumes:
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
-  crud-app:
-    image: aaronhmiller/crud-app
-    container_name: crud-app
-    hostname: crud-app
-    depends_on:
-      - postgres
-    ports:
-      - 80:3000
-    
-# The `db-data` volume persists the database data between container restarts.
-# to set the database password. You must create `db/password.txt` and add
-# a password of your choosing to it before running `docker compose up`.
-#     depends_on:
-#       db:
-#         condition: service_healthy
-#   db:
-#     image: postgres
-#     restart: always
-#     user: postgres
-#     secrets:
-#       - db-password
-#     volumes:
-#       - db-data:/var/lib/postgresql/data
-#     environment:
-#       - POSTGRES_DB=example
-#       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
-#     expose:
-#       - 5432
-#     healthcheck:
-#       test: [ "CMD", "pg_isready" ]
-#       interval: 10s
-#       timeout: 5s
-#       retries: 5
-# volumes:
-#   db-data:
-# secrets:
-#   db-password:
-#     file: db/password.txt
-

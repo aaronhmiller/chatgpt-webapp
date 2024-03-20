@@ -24,7 +24,3 @@ I thought I had it doing all updates via the REST API. However, I was just makin
 Now refactoring to use api.demojoyto.win.
 
 Notes: had to add both AWS IPs to the Cloudflare WAF to prevent 403s.
-
-## To-do
-
-~~Add ability to CREATE new records. This will need POST implemented in the web page (there's a REST call ready to go already)~~
