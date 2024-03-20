@@ -21,6 +21,9 @@ It told me to install Flask (Python framework) and gave me app.py & index.html &
 ## Misconceptions
 I thought I had it doing all updates via the REST API. However, I was just making calls to the DB, using the same logic the API used!
 
-Now refactoring to use api.demojoyto.win.
+Refactored to use api.demojoyto.win.
+
+## Learnings
+One side-effect of having a web frontend and an API is the different ways the same data displays. Note how chatgpt-webapp renders users puts the fiellds in alphabetical order (email/id/name) while the raw API puts/keeps them as they are defined in the DB (id/name/email).
 
 Notes: had to add both AWS IPs to the Cloudflare WAF to prevent 403s.
