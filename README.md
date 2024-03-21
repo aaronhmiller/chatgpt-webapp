@@ -27,3 +27,6 @@ Refactored to use api.demojoyto.win.
 One side-effect of having a web frontend and an API is the different ways the same data displays. Note how chatgpt-webapp renders users puts the fiellds in alphabetical order (email/id/name) while the raw API puts/keeps them as they are defined in the DB (id/name/email).
 
 Notes: had to add both AWS IPs to the Cloudflare WAF to prevent 403s.
+
+## Codebase visualization
+![Visualization of the codebase](https://github.com/aaronhmiller/chatgpt-webapp/blob/diagram/diagram.svg?raw=true)
