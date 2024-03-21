@@ -34,3 +34,8 @@ but
             const deleteButton = document.createElement('button');
             deleteButton.textContent = `Delete ${userId}`;
 ```
+
+## Usage note on repo visualizer
+Had to add write permission to workflows to repo settings:
+![CleanShot 2024-03-21 at 14 24 43@2x](https://github.com/aaronhmiller/chatgpt-webapp/assets/223486/678c7f8f-eea6-4832-8a18-9f8c5ff6fa2a)
+
