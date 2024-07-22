@@ -18,6 +18,14 @@ def update():
 def create():
     return render_template('add.html')
 
+@app.route('/update-address')
+def update_address():
+    return render_template('update-address.html')
+
+@app.route('/add-address')
+def create_address():
+    return render_template('add-address.html')
+
 @app.route('/delete')
 def delete():
     return render_template('delete.html')
@@ -36,6 +44,17 @@ def get_data():
     else:
       # Handle errors or unsuccessful responses
       return jsonify({'error': 'Failed to fetch data from API'}), response.status_code
+
+@app.route('/users/<int:data_id>/address', methods=['GET'])
+def get_address(data_id):
+   api_url = f'https://api.demojoyto.win/users/{data_id}/address'
+   response = requests.get(api_url)
+   if response.status_code == 200:
+     return response.json()
+   else:
+     # Handle errors or unsuccessful responses
+     return jsonify({'error': 'Failed to fetch data from API'}), response.status_code
+   
 
 # Define the route for updating data
 @app.route('/users/<int:data_id>', methods=['PUT'])
@@ -57,6 +76,26 @@ def update_data(data_id):
         # Handle errors or unsuccessful responses
         return jsonify({'error': 'Failed to update user data'}), response.status_code
 
+# Define another route for updating data
+@app.route('/users', methods=['PUT'])
+def update_data2():
+
+    # URL of the RESTful API endpoint for creating a new user
+    api_url = 'https://api.demojoyto.win/users'
+
+    # Extract the data to be created from the incoming request
+    user_data = request.json
+
+    # Make a PUT request to the RESTful API
+    response = requests.put(api_url, json=user_data)
+
+    # Check if the request was successful
+    if response.status_code == 201:
+        # Return the created user data response
+        return response.text
+    else:
+        # Handle errors or unsuccessful responses
+        return jsonify({'error': 'Failed to update user'}), response.status_code
 
 # Define the route for creating data
 @app.route('/users', methods=['POST'])
@@ -78,6 +117,48 @@ def create_data():
     else:
         # Handle errors or unsuccessful responses
         return jsonify({'error': 'Failed to create new user'}), response.status_code
+
+# Define the route for creating address data
+@app.route('/users/<int:data_id>/address', methods=['POST'])
+def create_address_data(data_id):
+
+    # URL of the RESTful API endpoint for creating a new user
+    api_url = f'https://api.demojoyto.win/users/{data_id}/address'
+
+    # Extract the data to be created from the incoming request
+    address_data = request.json
+
+    # Make a POST request to the RESTful API
+    response = requests.post(api_url, json=address_data)
+
+    # Check if the request was successful
+    if response.status_code == 201:
+        # Return the created address data response
+        return response.text
+    else:
+        # Handle errors or unsuccessful responses
+        return jsonify({'error': 'Failed to create new address'}), response.status_code
+
+# Define the route for updating address data
+@app.route('/users/<int:data_id>/address', methods=['PUT'])
+def update_address_data(data_id):
+
+    # URL of the RESTful API endpoint for creating a new user
+    api_url = f'https://api.demojoyto.win/users/{data_id}/address'
+
+    # Extract the data to be created from the incoming request
+    address_data = request.json
+
+    # Make a PUT request to the RESTful API
+    response = requests.put(api_url, json=address_data)
+
+    # Check if the request was successful
+    if response.status_code == 204:
+        # Return the created address data response
+        return response.text
+    else:
+        # Handle errors or unsuccessful responses
+        return jsonify({'error': 'Failed to update address'}), response.status_code
 
 # Define the route for deleting data
 @app.route('/users/<int:data_id>', methods=['DELETE'])

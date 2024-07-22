@@ -25,10 +25,15 @@
         <label for="edit-email">Email:</label>
         <input type="text" id="edit-email" name="edit-email" required>
 
+        <label for="edit-password">Password:</label>
+        <input type="text" id="edit-password" name="edit-password" required>
+
         <button type="button" onclick="editData()">Submit</button>
     </form>
 
     <h4><a href="add">Add Data</a></h4>
+    <h4><a href="add-address">Add Address Data</a></h4>
+    <h4><a href="update-address">Update Address Data</a></h4>
     <h4><a href="delete">Delete Data</a></h4>
 
 
@@ -55,8 +60,9 @@
             const id = document.getElementById('edit-id').value;
             const name = document.getElementById('edit-name').value;
             const email = document.getElementById('edit-email').value;
+            const password = document.getElementById('edit-password').value;
 
-            fetch('/users/' + id, {
+            fetch('/users', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -65,6 +71,7 @@
                     id: id,
                     name: name,
                     email: email,
+                    password: password,
                 }),
             })
             .then(response => response.text())
