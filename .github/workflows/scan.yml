@@ -21,4 +21,4 @@ jobs:
           ox_scan_full_branch: true
           ox_override_blocking: true
           #ox_fail_on_error: true
-        uses: oxsecurity/ox-security-scan@main
+        uses: oxsecurity/ox-security-scan@1.0.0  
